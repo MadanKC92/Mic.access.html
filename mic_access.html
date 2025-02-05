@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microphone Test</title>
+</head>
+<body>
+    <h2>Click the button to start microphone access</h2>
+    <button onclick="startRecording()">Start Mic</button>
+    <p id="status"></p>
+
+    <script>
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                document.getElementById("status").innerText = "Microphone access granted!";
+                console.log("Microphone stream:", stream);
+            } catch (error) {
+                document.getElementById("status").innerText = "Microphone access denied!";
+                console.error("Error accessing microphone:", error);
+            }
+        }
+    </script>
+</body>
+</html>
